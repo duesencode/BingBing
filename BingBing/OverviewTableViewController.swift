@@ -9,20 +9,25 @@
 import UIKit
 
 class OverviewTableViewController: UITableViewController {
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        self.refreshControl?.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func refresh() {
+        ServerManager.sharedInstance.refreshServers { () -> Void in
+            self.refreshControl?.endRefreshing()
+        }
+
+        
     }
 
     // MARK: - Table view data source

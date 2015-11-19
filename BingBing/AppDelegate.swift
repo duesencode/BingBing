@@ -12,10 +12,15 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var serverManager = ServerManager.sharedInstance
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+
+        serverManager.servers?.append(Server(name: "Google", url: NSURL(string:"https://www.google.de")!, notes: "Google Deutschland"))
+        serverManager.servers?.append(Server(name: "Amazon", url: NSURL(string:"https://www.amazon.de")!, notes: "Amazon Deutschland"))
+        serverManager.servers?.append(Server(name: "Facebook", url: NSURL(string:"https://facebook.com")!, notes: "Facebook USA"))
+        serverManager.servers?.append(Server(name: "Kinox", url: NSURL(string:"http://www.kinox.to")!, notes: "Kinox"))
         return true
     }
 

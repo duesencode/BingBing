@@ -17,6 +17,13 @@ class EditTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        let foo = Server(name: "dsaklfj", url: NSURL(string: "fasdfasd")!, notes: "Alte Notiz")
+        print(foo.notes)
+        
+        foo.notes = "Neue Notiz"
+        
+        print(foo.notes)
     }
 
     override func didReceiveMemoryWarning() {
