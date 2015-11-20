@@ -15,7 +15,7 @@ import UIKit
 class Server {
     // var id: Int?
     var name: String?
-    var url: NSURL?
+    var url: NSURL!
     var notes: String?
     var goodRequests: Int = 0
     var requests: Int = 0
@@ -24,7 +24,7 @@ class Server {
     var favicon: UIImage?
     var healthEmoji: String = ""
     
-    init(name:String, url:NSURL, notes:String){
+    init(name:String?, url:NSURL, notes:String?){
         self.name = name
         self.url = url
         self.notes = notes

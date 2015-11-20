@@ -20,14 +20,17 @@ class DetailTableViewController: UITableViewController, UIActionSheetDelegate {
     @IBOutlet weak var notesTextView: UITextView!
     
     override func viewWillAppear(animated: Bool) {
-        nameCell.detailTextLabel?.text = server.name
+        super.viewWillAppear(animated)
+        nameCell.detailTextLabel!.text = server.name
+        print(server.name)
+        print(nameCell.detailTextLabel?.text)
         urlCell.detailTextLabel?.text = server.url?.absoluteString
         lastUpdateCell.detailTextLabel?.text = server.lastUpdate?.description
         availabilityCell.detailTextLabel?.text = "\(server.healthEmoji) \(Int(server.score*100))%"
         notesTextView.text = server.notes
+        self.tableView.reloadData()
     }
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.toolbarHidden = false
@@ -44,7 +47,7 @@ class DetailTableViewController: UITableViewController, UIActionSheetDelegate {
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         alertCtrl.addAction(cancelAction)
         let deleteAction = UIAlertAction(title: "Delete server", style: .Destructive) { (action) -> Void in
-            ServerManager.sharedInstance.servers?.removeAtIndex(self.serverIdx)
+            ServerManager.sharedInstance.servers.removeAtIndex(self.serverIdx)
             
             self.navigationController!.popToRootViewControllerAnimated(true)
         }

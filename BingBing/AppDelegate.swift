@@ -17,9 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
 
-        serverManager.servers?.append(Server(name: "Google", url: NSURL(string:"https://www.google.de")!, notes: "Google Deutschland"))
-        serverManager.servers?.append(Server(name: "Amazon", url: NSURL(string:"https://www.amazon.de")!, notes: "Amazon Deutschland"))
-        serverManager.servers?.append(Server(name: "Facebook", url: NSURL(string:"https://facebook.com")!, notes: "Facebook USA"))
+        serverManager.servers.append(Server(name: "Google", url: NSURL(string:"https://www.google.de")!, notes: "Google Deutschland"))
+        serverManager.servers.append(Server(name: "Amazon", url: NSURL(string:"https://www.amazon.de")!, notes: "Amazon Deutschland"))
+        serverManager.servers.append(Server(name: "Facebook", url: NSURL(string:"https://facebook.com")!, notes: "Facebook USA"))
         return true
     }
 

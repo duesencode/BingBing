@@ -15,17 +15,17 @@ class ServerManager {
     private let ok = "⛅️"
     private let bad = "⚡️"
     
-    internal var servers : [Server]? = []
+    internal var servers : [Server] = []
     private var finishedRequestCounter : Int = 0
     
     static let sharedInstance = ServerManager()
     
     internal func refreshServers(completionHandler: () -> Void) {
         self.finishedRequestCounter = 0
-        for server in self.servers! {
+        for server in self.servers {
             self.refresh(server, completionHandler: { () -> Void in
                 self.finishedRequestCounter += 1
-                if(self.finishedRequestCounter == self.servers?.count) {
+                if(self.finishedRequestCounter == self.servers.count) {
                     completionHandler()
                 }
             })

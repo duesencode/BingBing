@@ -52,13 +52,13 @@ class OverviewTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return (serverManager.servers?.count)!
+        return (serverManager.servers.count)
     }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("server", forIndexPath: indexPath)
-        let server = serverManager.servers![indexPath.row]
+        let server = serverManager.servers[indexPath.row]
         
         // Configure the cell...
         cell.textLabel?.text = server.name
@@ -67,8 +67,12 @@ class OverviewTableViewController: UITableViewController {
         
         
         if(server.favicon == nil){
-            server.favicon = UIImage(data: NSData(contentsOfURL: NSURL(string: (server.url?.absoluteString)! + "/favicon.ico")!)!)
+            let faviconUrl = NSURL(string: (server.url!.absoluteString) + "/favicon.ico")!
+            if let data = NSData(contentsOfURL: faviconUrl) {
+                server.favicon = UIImage(data: data)
+            }
         }
+        
         if(server.favicon != nil) {
             cell.imageView?.image = imageWithImage(server.favicon!, newSize: CGSize(width: 32, height: 32))
         }
@@ -92,13 +96,13 @@ class OverviewTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         if(segue.identifier == "detailSegue") {
             let detailVC = segue.destinationViewController as! DetailTableViewController
-            detailVC.server = serverManager.servers![self.tableView.indexPathForSelectedRow!.row]
+            detailVC.server = serverManager.servers[self.tableView.indexPathForSelectedRow!.row]
             detailVC.serverIdx = self.tableView.indexPathForSelectedRow!.row
         } else {
             let navVC = segue.destinationViewController as! UINavigationController
             let editVC =  navVC.childViewControllers[0] as! EditTableViewController
             editVC.title = "Add new Server"
-            editVC.server = Server(name: "", url: NSURL(), notes: "")
+            editVC.server = nil
         }
     }
     
