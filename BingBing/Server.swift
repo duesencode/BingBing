@@ -7,6 +7,10 @@
 //
 
 import Foundation
+import UIKit
+
+
+
 
 class Server {
     // var id: Int?
@@ -16,6 +20,9 @@ class Server {
     var goodRequests: Int = 0
     var requests: Int = 0
     var score: Float = 0.0
+    var lastUpdate: NSDate?
+    var favicon: UIImage?
+    var healthEmoji: String = ""
     
     init(name:String, url:NSURL, notes:String){
         self.name = name

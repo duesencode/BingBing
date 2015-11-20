@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qVa-DH-gai">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qVa-DH-gai">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
@@ -25,8 +25,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CN2-gd-8bS">
-                                                    <rect key="frame" x="8" y="7" width="584" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CN2-gd-8bS">
+                                                    <rect key="frame" x="8" y="12" width="584" height="19"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -48,8 +48,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="URL" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="XM2-Gs-N7l">
-                                                    <rect key="frame" x="8" y="7" width="584" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="URL" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="XM2-Gs-N7l">
+                                                    <rect key="frame" x="8" y="12" width="584" height="19"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -112,6 +112,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="nameTextField" destination="CN2-gd-8bS" id="92T-li-hwz"/>
+                        <outlet property="notesTextView" destination="kmc-XG-gOC" id="laj-pn-wGS"/>
+                        <outlet property="urlTextField" destination="XM2-Gs-N7l" id="uE3-oO-cIK"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1wg-Qn-zKK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -165,7 +170,7 @@
                                 </tableViewCellContentView>
                                 <animations/>
                                 <connections>
-                                    <segue destination="sMD-aR-GTQ" kind="show" id="rhx-0x-2ao"/>
+                                    <segue destination="sMD-aR-GTQ" kind="show" identifier="detailSegue" id="rhx-0x-2ao"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -191,7 +196,7 @@
             </objects>
             <point key="canvasLocation" x="992" y="413"/>
         </scene>
-        <!--Title-->
+        <!--Details-->
         <scene sceneID="mpu-xk-wgT">
             <objects>
                 <tableViewController id="sMD-aR-GTQ" customClass="DetailTableViewController" customModule="BingBing" customModuleProvider="target" sceneMemberID="viewController">
@@ -321,6 +326,33 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Notes" id="TXq-y7-NG7">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="250" id="Uhu-ru-gfl">
+                                        <rect key="frame" x="0.0" y="392" width="600" height="250"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Uhu-ru-gfl" id="bq1-ZW-Vf5">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="249"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="E9l-nF-dTA">
+                                                    <rect key="frame" x="8" y="8" width="584" height="233"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="E9l-nF-dTA" firstAttribute="leading" secondItem="bq1-ZW-Vf5" secondAttribute="leadingMargin" id="7qy-i8-Oys"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="E9l-nF-dTA" secondAttribute="bottom" id="9PV-gt-J31"/>
+                                                <constraint firstItem="E9l-nF-dTA" firstAttribute="top" secondItem="bq1-ZW-Vf5" secondAttribute="topMargin" id="Afd-by-ZBV"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="E9l-nF-dTA" secondAttribute="trailing" id="CBf-g0-C8K"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="sMD-aR-GTQ" id="3Fu-i1-vg7"/>
@@ -329,19 +361,29 @@
                     </tableView>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="hdJ-vs-bMs"/>
-                        <barButtonItem title="Delete" id="JSl-hY-i47">
+                        <barButtonItem style="plain" systemItem="trash" id="JSl-hY-i47">
                             <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="deletePressed:" destination="sMD-aR-GTQ" id="H6b-eO-ZOG"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="YQS-BD-pdF"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Title" id="rwS-e3-OPU">
-                        <barButtonItem key="rightBarButtonItem" title="Bearbeiten" id="lOn-ZJ-WFe">
+                    <navigationItem key="navigationItem" title="Details" id="rwS-e3-OPU">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="lOn-ZJ-WFe">
                             <connections>
                                 <segue destination="hXL-xW-PsA" kind="presentation" id="nhB-fQ-wvj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <connections>
+                        <outlet property="availabilityCell" destination="edm-Cd-c8T" id="Yrf-ST-C7c"/>
+                        <outlet property="lastUpdateCell" destination="H4J-il-4ua" id="Hln-ip-E3v"/>
+                        <outlet property="nameCell" destination="Sg5-gN-Ezw" id="suu-gs-NPW"/>
+                        <outlet property="notesTextView" destination="E9l-nF-dTA" id="XZ2-cI-vvW"/>
+                        <outlet property="urlCell" destination="Fmm-7D-m90" id="PKN-Gu-tTj"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PhU-wW-SMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -387,6 +429,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="iEI-1O-WF6"/>
+        <segue reference="nhB-fQ-wvj"/>
     </inferredMetricsTieBreakers>
 </document>

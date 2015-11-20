@@ -8,32 +8,54 @@
 
 import UIKit
 
-class DetailTableViewController: UITableViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        self.navigationController?.toolbarHidden = false
+class DetailTableViewController: UITableViewController, UIActionSheetDelegate {
+    
+    var server: Server!
+    var serverIdx: Int!
+    
+    @IBOutlet weak var nameCell: UITableViewCell!
+    @IBOutlet weak var urlCell: UITableViewCell!
+    @IBOutlet weak var lastUpdateCell: UITableViewCell!
+    @IBOutlet weak var availabilityCell: UITableViewCell!
+    @IBOutlet weak var notesTextView: UITextView!
+    
+    override func viewWillAppear(animated: Bool) {
+        nameCell.detailTextLabel?.text = server.name
+        urlCell.detailTextLabel?.text = server.url?.absoluteString
+        lastUpdateCell.detailTextLabel?.text = server.lastUpdate?.description
+        availabilityCell.detailTextLabel?.text = "\(server.healthEmoji) \(Int(server.score*100))%"
+        notesTextView.text = server.notes
     }
 
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationController?.toolbarHidden = false
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func deletePressed(sender: UIBarButtonItem) {
+        let alertCtrl = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        alertCtrl.addAction(cancelAction)
+        let deleteAction = UIAlertAction(title: "Delete server", style: .Destructive) { (action) -> Void in
+            ServerManager.sharedInstance.servers?.removeAtIndex(self.serverIdx)
+            
+            self.navigationController!.popToRootViewControllerAnimated(true)
+        }
+        alertCtrl.addAction(deleteAction)
+        self.presentViewController(alertCtrl, animated: true, completion: nil)
     }
-    */
-
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let navVC = segue.destinationViewController as! UINavigationController
+        let editVC =  navVC.childViewControllers[0] as! EditTableViewController
+        editVC.title = "Edit"
+        editVC.server = server
+    }
 }
