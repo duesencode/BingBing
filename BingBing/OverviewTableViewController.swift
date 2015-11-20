@@ -26,7 +26,7 @@ class OverviewTableViewController: UITableViewController {
         serverManager.refreshServers { () -> Void in
             self.tableView.reloadData()
         }
-        self.refreshControl?.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl!.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
     }
     
     override func didReceiveMemoryWarning() {
@@ -55,15 +55,22 @@ class OverviewTableViewController: UITableViewController {
         return (serverManager.servers.count)
     }
     
+    func imageWithImage(image:UIImage, newSize:CGSize) -> UIImage {
+        UIGraphicsBeginImageContext(newSize)
+        image.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("server", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("serverCell", forIndexPath: indexPath)
         let server = serverManager.servers[indexPath.row]
         
         // Configure the cell...
-        cell.textLabel?.text = server.name
+        cell.textLabel!.text = server.name
         let detail = "\(server.healthEmoji)\(server.url!.absoluteString)"
-        cell.detailTextLabel?.text = detail
+        cell.detailTextLabel!.text = detail
         
         
         if(server.favicon == nil){
@@ -74,20 +81,25 @@ class OverviewTableViewController: UITableViewController {
         }
         
         if(server.favicon != nil) {
-            cell.imageView?.image = imageWithImage(server.favicon!, newSize: CGSize(width: 32, height: 32))
+            cell.imageView!.image = imageWithImage(server.favicon!, newSize: CGSize(width: 32, height: 32))
+        } else {
+            cell.imageView!.image = nil
         }
         
         return cell
     }
     
-    func imageWithImage(image:UIImage, newSize:CGSize) -> UIImage {
-        UIGraphicsBeginImageContext(newSize)
-        image.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
     }
     
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if(editingStyle == .Delete) {
+            ServerManager.sharedInstance.servers.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
+    }
+
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation

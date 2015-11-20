@@ -29,7 +29,7 @@
                                                     <rect key="frame" x="8" y="12" width="584" height="19"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="namePhonePad" returnKeyType="done"/>
                                                 </textField>
                                             </subviews>
                                             <animations/>
@@ -52,7 +52,7 @@
                                                     <rect key="frame" x="8" y="12" width="584" height="19"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="done"/>
                                                 </textField>
                                             </subviews>
                                             <animations/>
@@ -132,18 +132,8 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="8Oz-n3-QuD">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="serverCell" editingAccessoryType="disclosureIndicator" textLabel="pZm-UL-Bc7" detailTextLabel="sVT-DP-U4j" style="IBUITableViewCellStyleSubtitle" id="f6U-yO-0iz">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Oz-n3-QuD" id="XHk-Hk-ugf">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
-                                </tableViewCellContentView>
-                                <animations/>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="server" editingAccessoryType="disclosureIndicator" textLabel="pZm-UL-Bc7" detailTextLabel="sVT-DP-U4j" style="IBUITableViewCellStyleSubtitle" id="f6U-yO-0iz">
-                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f6U-yO-0iz" id="9BN-6e-ExU">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>

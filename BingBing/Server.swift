@@ -28,5 +28,6 @@ class Server {
         self.name = name
         self.url = url
         self.notes = notes
+        self.favicon = nil
     }
 }
